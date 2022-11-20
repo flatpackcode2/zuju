@@ -1,8 +1,8 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from "express";
+import path from 'path';
+import cookieParser from 'cookie-parser'
+import logger from 'morgan';
+import { sequelize } from "./models";
 
 const app = express();
 const port = 1337
