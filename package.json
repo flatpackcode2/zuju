@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon index.ts"
   },
   "dependencies": {
     "body-parser": "^1.20.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
@@ -17,7 +18,11 @@
     "sequelize": "^6.25.7"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3"
   },
   "nodemonConfig": {
     "restartable": "rs",
@@ -31,9 +36,6 @@
       "py": "python",
       "rb": "ruby",
       "ts": "ts-node"
-    },
-    "events": {
-      "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
     },
     "env": {
       "NODE_ENV": "development"
