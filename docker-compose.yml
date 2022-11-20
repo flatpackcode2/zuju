@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  zuju_db:
+    container_name: zuju_db
+    image: mysql
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: mypassword
+    volumes:
+      - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+  zuju_adminer:
+    container_name: zuju_adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
