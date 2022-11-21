@@ -1,8 +1,8 @@
-import { DataTypes, Model, } from "sequelize";
+import { DataTypes, Model, Optional } from "sequelize";
 import { sequelizeConnection } from '../config'
 
 
-interface FixtureAttr {
+export interface FixtureAttr {
     id: number;
     match_start: Date;
     match_end: Date;
@@ -14,10 +14,8 @@ interface FixtureAttr {
     updated_at?: Date;
     deleted_at?: Date;
 }
-
-type FixtureCreateAttr = FixtureAttr;
-
-class Fixture extends Model<FixtureAttr, FixtureCreateAttr> implements FixtureAttr {
+export interface FixtureCreateAttr extends Optional<FixtureAttr, 'id'> { }
+export class Fixture extends Model<FixtureAttr, FixtureCreateAttr> implements FixtureAttr {
     public id!: number;
     public match_start!: Date;
     public match_end!: Date;
@@ -69,8 +67,9 @@ Fixture.init({
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     sequelize: sequelizeConnection,
-    paranoid: true
+    paranoid: true,
+    freezeTableName: true,
+    tableName: 'fixture'
 });
-
-export default Fixture;

@@ -2,8 +2,7 @@ import express, { ErrorRequestHandler } from "express";
 import path from 'path';
 import cookieParser from 'cookie-parser'
 import logger from 'morgan';
-import { db } from "./db/config";
-const { Fixture, Team, sequelize, Sequelize } = db;
+import { Fixture } from "./db/models";
 
 const app = express();
 const port = 1337
@@ -25,11 +24,16 @@ app.use(function (err, req, res, next) {
   res.render('error');
 } as ErrorRequestHandler);
 
-app.get('/', (req, res) => {
-  res.send(`hello world ... ${Math.random()}`)
-  console.log('sequelize', sequelize);
-
+app.get('/', async (req, res) => {
   // const team = Team.build({ name: `random team name ${Math.floor(Math.random() * 10) + 1}`, logo: 'www.google.com' });
+  try {
+    const fixture = await Fixture.findAndCountAll();
+    console.log('Fixture', fixture);
+    res.send('This is a message')
+  } catch (err) {
+    console.log('err', err);
+    res.send('This is a message')
+  }
 })
 
 

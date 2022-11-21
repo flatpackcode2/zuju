@@ -2,7 +2,7 @@ import { DataTypes, Model, Optional } from "sequelize";
 import { sequelizeConnection } from '../config'
 
 
-interface TeamAttr {
+export interface TeamAttr {
     id: number;
     team_name: string;
     logo?: string;
@@ -11,9 +11,9 @@ interface TeamAttr {
     deletedAt?: Date;
 }
 
-type TeamCreateAttr = Optional<TeamAttr, 'logo'>;
+export interface TeamCreateAttr extends Optional<TeamAttr, 'logo'> { };
 
-class Team extends Model<TeamAttr, TeamCreateAttr> implements TeamAttr {
+export class Team extends Model<TeamAttr, TeamCreateAttr> implements TeamAttr {
     public id!: number;
     public team_name!: string;
     public logo?: string;
@@ -43,8 +43,9 @@ Team.init({
     timestamps: true,
     createdAt: 'created_at',
     updatedAt: 'updated_at',
+    deletedAt: 'deleted_at',
     sequelize: sequelizeConnection,
-    paranoid: true
+    paranoid: true,
+    freezeTableName: true,
+    tableName: 'team'
 });
-
-export default Team;
