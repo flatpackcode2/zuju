@@ -3,15 +3,15 @@ USE local_db;
 
 CREATE TABLE team(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    team_name VARCHAR(255) NOT NULL,
     logo TEXT,
-    UNIQUE(name)
+    UNIQUE(team_name)
 );
 
 CREATE TABLE fixture(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    team_name TIMESTAMP NOT NULL,
-    match_end TIMESTAMP NOT NULL,
+    match_end DATETIME,
+    match_start DATETIME, 
     home_team_id INT NOT NULL,
     away_team_id INT NOT NULL,
     home_score INT NOT NULL DEFAULT 0,
