@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from "sequelize";
 import { sequelizeConnection } from '../config'
+import { Team } from "./Team";
 
 
 export interface FixtureAttr {
@@ -73,3 +74,11 @@ Fixture.init({
     freezeTableName: true,
     tableName: 'fixture'
 });
+
+Fixture.belongsTo(Team)
+Team.hasMany(Fixture, {
+    foreignKey: 'home_team_id'
+})
+Team.hasMany(Fixture, {
+    foreignKey: 'away_team_id'
+})
