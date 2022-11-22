@@ -3,6 +3,7 @@ import path from 'path';
 import cookieParser from 'cookie-parser'
 import logger from 'morgan';
 import { Fixture } from "./db/models";
+import { checkPaginationParams } from "./helpers";
 
 const app = express();
 const port = 1337
@@ -24,9 +25,21 @@ app.use(function (err, req, res, next) {
     res.render('error');
 } as ErrorRequestHandler);
 
-app.get('/', async (req, res) => {
-    // const team = Team.build({ name: `random team name ${Math.floor(Math.random() * 10) + 1}`, logo: 'www.google.com' });
+app.get('/fixture', async (req, res) => {
     try {
+        const { page = '1', limit = '20' } = req.query;
+        if (typeof page !== 'string' || typeof limit !== 'string') {
+            res.status(400).send('The request as the pagination params are not strings')
+            return;
+        }
+
+        const validate = checkPaginationParams({ page, limit })
+        console.log('validate.valid', validate.valid)
+        if (!validate.valid) {
+            res.status(400).send({ errors: validate.errors })
+            return;
+        }
+
         const fixture = await Fixture.findAndCountAll();
         console.log('Fixture', fixture);
         res.send('This is a message')
