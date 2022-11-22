@@ -34,18 +34,20 @@ app.get('/fixture', async (req, res) => {
         }
 
         const validate = checkPaginationParams({ page, limit })
-        console.log('validate.valid', validate.valid)
         if (!validate.valid) {
             res.status(400).send({ errors: validate.errors })
             return;
         }
 
-        const fixture = await Fixture.findAndCountAll();
-        console.log('Fixture', fixture);
-        res.send('This is a message')
+        const fixture = await Fixture.findAndCountAll({
+            limit: parseInt(limit),
+            offset: (parseInt(page) - 1) * parseInt(limit)
+        });
+        res.send(fixture)
+
     } catch (err) {
         console.log('err', err);
-        res.send('This is a message')
+        res.status(404).send('Something went wrong.')
     }
 })
 
