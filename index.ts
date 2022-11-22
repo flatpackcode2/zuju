@@ -2,7 +2,7 @@ import express, { ErrorRequestHandler } from "express";
 import path from 'path';
 import cookieParser from 'cookie-parser'
 import logger from 'morgan';
-import { Fixture } from "./db/models";
+import { Fixture, Team } from "./db/models";
 import { checkPaginationParams } from "./helpers";
 
 const app = express();
@@ -41,7 +41,8 @@ app.get('/fixture', async (req, res) => {
 
         const fixture = await Fixture.findAndCountAll({
             limit: parseInt(limit),
-            offset: (parseInt(page) - 1) * parseInt(limit)
+            offset: (parseInt(page) - 1) * parseInt(limit),
+            include: Team,
         });
         res.send(fixture)
 

@@ -1,8 +1,8 @@
 import _isEmpty from 'lodash/isEmpty';
 
 export const isInteger = (param: string) => {
-    const pattern = new RegExp('^\d+$`');
-    return pattern.test(param);
+    const pattern = new RegExp(/\d+/g);
+    return pattern.test(param)
 }
 
 

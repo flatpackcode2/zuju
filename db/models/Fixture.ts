@@ -75,10 +75,15 @@ Fixture.init({
     tableName: 'fixture'
 });
 
-Fixture.belongsTo(Team)
+Fixture.belongsTo(Team, {
+    foreignKey: 'home_team_id'
+});
+Fixture.belongsTo(Team, {
+    foreignKey: 'away_team_id'
+});
 Team.hasMany(Fixture, {
     foreignKey: 'home_team_id'
-})
+});
 Team.hasMany(Fixture, {
     foreignKey: 'away_team_id'
-})
+});
