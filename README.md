@@ -18,4 +18,3 @@
 
 ## Description
 This sample project currently does not have any caching aside from the built in caching that mySQL has.
-The Sequelize ORM is used and appropriate models were set up.
