@@ -1,14 +1,14 @@
 # Instructions
 
 ## Setup
-1. Make sure [Docker](https://docs.docker.com/get-docker/) is installed on your machine.
+1. Make sure [Docker](https://docs.docker.com/get-docker/){:target="_blank"} is installed on your machine.
 2. Run `docker compose up` at the root of this directory. This will set up the db called `zuju_db` and db client `adminer`
-3. Ensure that version 18.x of [Node](https://nodejs.org/en/download/) in installed on your machine.
+3. Ensure that version 18.x of [Node](https://nodejs.org/en/download/){:target="_blank"} in installed on your machine.
 4. Run `npm i` at the root of this directory to install all required packages.
-5. Run `npm run dev` at the root of this directory. This will start the server at (http://localhost:1337)
+5. Run `npm run dev` at the root of this directory. This will start the server at (http://localhost:1337){:target="_blank"}
 
 ## Testing and querying
-1. You can login to adminer to view and query the db at (http://localhost:8080). The details are as follows:
+1. You can login to adminer to view and query the db at (http://localhost:8080){:target="_blank"}. The details are as follows:
         - user: root
         - password: mypassword
         - server: zuju_db
