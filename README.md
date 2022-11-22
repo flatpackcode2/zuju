@@ -1,6 +1,6 @@
 # Instructions
 
-## Setup <a href="https://www.markdownguide.org" target="_blank">Learn Markdown!</a>
+## Setup
 1. Make sure <a href="https://docs.docker.com/get-docker" target="_blank">Docker</a> is installed on your machine.
 2. Run `docker compose up` at the root of this directory. This will set up the db called `zuju_db` and db client `adminer`
 3. Ensure that version 18.x of <a href="https://nodejs.org/en/download/r" target="_blank">Node</a> in installed on your machine.
