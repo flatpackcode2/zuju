@@ -25,6 +25,10 @@ app.use(function (err, req, res, next) {
     res.render('error');
 } as ErrorRequestHandler);
 
+app.get('/', async (req, res) => {
+    res.send('OK')
+})
+
 app.get('/fixture', async (req, res) => {
     try {
         const { page = '1', limit = '20' } = req.query;
